@@ -9,7 +9,6 @@ import org.greenatom.filestore.FileStore.utill.FileNotCreatedException;
 import org.greenatom.filestore.FileStore.utill.FileNotFoundException;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -17,7 +16,8 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
-import java.util.Base64;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/file_store")
@@ -46,6 +46,13 @@ public class FileStoreController {
             throw new FileNotCreatedException(errorMsg.toString());
         }
         return fileService.save(convertToFile(fileDTO));
+    }
+
+    @GetMapping()
+    public List<FileDTO> getAllFiles() {
+        return fileService.findAllOrderByCreationDate().stream()
+                .map(this::convertToFileDTO)
+                .collect(Collectors.toList());
     }
 
     @GetMapping("/{id}")

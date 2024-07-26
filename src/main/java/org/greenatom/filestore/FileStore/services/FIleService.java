@@ -6,8 +6,7 @@ import org.greenatom.filestore.FileStore.repositories.FileRepository;
 import org.greenatom.filestore.FileStore.utill.FileNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 public class FIleService {
@@ -25,6 +24,10 @@ public class FIleService {
 
     public File findOne(int id){
         return fileRepository.findById(id).orElseThrow(FileNotFoundException::new);
+    }
+
+    public List<File> findAllOrderByCreationDate(){
+        return fileRepository.findAllByOrderByCreationDateAsc();
     }
 
 
