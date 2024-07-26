@@ -18,8 +18,6 @@ public class FIleService {
     }
 
     public int save(File file){
-        enrichFile(file);
-
         fileRepository.save(file);
         return file.getId();
     }
@@ -28,7 +26,5 @@ public class FIleService {
         return fileRepository.findById(id).orElse(null);
     }
 
-    private void enrichFile(File file){
-        file.setCreationDate(LocalDateTime.now());
-    }
+
 }

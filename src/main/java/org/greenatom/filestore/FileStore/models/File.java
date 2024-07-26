@@ -1,5 +1,6 @@
 package org.greenatom.filestore.FileStore.models;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
@@ -16,7 +17,7 @@ public class File {
     private int id;
 
     @Column(name="file_data")
-   // @NotNull(message = "Файл должен хранить данные")
+    //@NotNull(message = "Файл должен хранить данные")
     private byte[] fileData;
 
     @Column(name="title")

@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.util.Base64Utils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,10 +18,10 @@ import java.util.Base64;
 @RequestMapping("/api/file_store")
 public class FileStoreController {
     private final FIleService fileService;
-    private ModelMapper modelMapper;
+    private final ModelMapper modelMapper;
 
     @Autowired
-    public FileStoreController(final FIleService fileService, ModelMapper modelMapper) {
+    public FileStoreController(final FIleService fileService,final ModelMapper modelMapper) {
         this.fileService = fileService;
         this.modelMapper = modelMapper;
     }
@@ -38,15 +37,11 @@ public class FileStoreController {
     }
 
     @GetMapping("/{id}")
-    public File getFile(@PathVariable("id") int id){
-        return fileService.findOne(id);
+    public FileDTO getFile(@PathVariable("id") int id){
+        return convertToFileDTO(fileService.findOne(id));
     }
 
     private File convertToFile(FileDTO fileDTO) {
-//        File file = modelMapper.map(fileDTO, File.class);
-//        //file.setFileData(Base64.getDecoder().decode(fileDTO.getFileData()));
-//        file.setFileData(Base64Utils.decodeFromString(fileDTO.getFileData()));
-//        return file;
         return modelMapper.map(fileDTO, File.class);
     }
 
