@@ -17,7 +17,7 @@ public class File {
     private int id;
 
     @Column(name="file_data")
-    //@NotNull(message = "Файл должен хранить данные")
+    @NotNull(message = "Файл должен хранить данные")
     private byte[] fileData;
 
     @Column(name="title")

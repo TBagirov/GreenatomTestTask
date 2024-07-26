@@ -3,6 +3,7 @@ package org.greenatom.filestore.FileStore.services;
 
 import org.greenatom.filestore.FileStore.models.File;
 import org.greenatom.filestore.FileStore.repositories.FileRepository;
+import org.greenatom.filestore.FileStore.utill.FileNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,7 +24,7 @@ public class FIleService {
     }
 
     public File findOne(int id){
-        return fileRepository.findById(id).orElse(null);
+        return fileRepository.findById(id).orElseThrow(FileNotFoundException::new);
     }
 
 
