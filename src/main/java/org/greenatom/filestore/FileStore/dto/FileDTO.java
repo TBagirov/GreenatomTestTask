@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 public class FileDTO {
 
     @NotEmpty(message = "Файл должен хранить данные")
-    private String fileData;
+    private byte[] fileData;
 
     @NotEmpty(message = "Название файла должно быть указано")
     private String title;
@@ -18,11 +18,11 @@ public class FileDTO {
     private String description;
 
 
-    public String getFileData() {
+    public byte[] getFileData() {
         return fileData;
     }
 
-    public void setFileData(String fileData) {
+    public void setFileData(byte[] fileData) {
         this.fileData = fileData;
     }
 
