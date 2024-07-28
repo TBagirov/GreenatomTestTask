@@ -31,6 +31,7 @@ public class FileStoreController {
         this.modelMapper = modelMapper;
     }
 
+
     @PostMapping()
     public int createFile(@RequestBody @Valid FileDTO fileDTO,
                                                  BindingResult bindingResult) {
@@ -49,7 +50,7 @@ public class FileStoreController {
     }
 
     @GetMapping()
-    public List<FileDTO> getAllFiles() {
+    public List<FileDTO> getAllFilesOrderByCreationDate() {
         return fileService.findAllOrderByCreationDate().stream()
                 .map(this::convertToFileDTO)
                 .collect(Collectors.toList());
@@ -60,6 +61,7 @@ public class FileStoreController {
         return convertToFileDTO(fileService.findOne(id));
     }
 
+
     private File convertToFile(FileDTO fileDTO) {
         return modelMapper.map(fileDTO, File.class);
     }
@@ -67,6 +69,7 @@ public class FileStoreController {
     private FileDTO convertToFileDTO(File file){
         return modelMapper.map(file, FileDTO.class);
     }
+
 
     @ExceptionHandler
     private ResponseEntity<FileErrorResponse> handleException(FileNotFoundException ex){
