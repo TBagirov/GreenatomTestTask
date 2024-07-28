@@ -134,7 +134,7 @@ ___
   "fileData": "VGhpcmQgSGVsbG8gV29ybGQ="  
   }
   ```
-  *При некорректном теле запроса предусмотрен json c exception* <br>
+  *При отсутствии нужного поля в теле запроса предусмотрен json c exception* <br>
 + ### Получение файла по id
   Адрес: `http://localhost:8080/api/file_store/{id}` <br>
   HTTP-метод: `GET` <br>

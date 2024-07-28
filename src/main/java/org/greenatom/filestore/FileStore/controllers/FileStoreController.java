@@ -41,8 +41,7 @@ public class FileStoreController {
                 errorMsg.append(error.getField())
                         .append(" - ")
                         .append(error.getDefaultMessage())
-                        .append(";")
-                        .append("/n");
+                        .append(";  ");
 
             throw new FileNotCreatedException(errorMsg.toString());
         }
