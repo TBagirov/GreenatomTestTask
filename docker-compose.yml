@@ -3,7 +3,7 @@ version: "3.7"
 services:
   app:
     container_name: "app"
-    image: file-store
+    image: tbagirov/file-store
     build:
       dockerfile: Dockerfile
       context: .
